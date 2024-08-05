@@ -1,24 +1,71 @@
 # Qrfy
 
-TODO: Delete this and the text below, and describe your gem
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/qrfy`. To experiment with that code, run `bin/console` for an interactive prompt.
+A really simple wrapper around https://qrfy.com/ API. Documentation of the API is here https://qrfy.com/docs/QR. To use that API you have to setup your API key first.
 
 ## Installation
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
-
 Install the gem and add to the application's Gemfile by executing:
 
-    $ bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+    $ bundle add qrfy
 
 If bundler is not being used to manage dependencies, install the gem by executing:
 
-    $ gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+    $ gem install qrfy
 
 ## Usage
 
-TODO: Write usage instructions here
+First setup the API key in the rails initializers
+
+```ruby
+# config/initializers/qrfy.rb
+Qrfy.configure do |config|
+    config.api_key = ENV["QRFY_API_KEY"]
+end
+```
+
+You could setup the API key during the client initialization as well (if you set it up in the initializer, then it'll be used by default):
+```ruby
+client = Qrfy::Client.new(api_key: ENV["QRFY_API_KEY"])
+```
+
+## Resources
+
+### QR
+
+
+
+Create a new QR code:
+```ruby
+client.qrs.create()
+```
+
+Create many QR codes at once:
+```ruby
+client.qrs.bulk_create()
+```
+
+### Folder
+
+You can list folders by following that code:
+```ruby
+client.folders.list.each do |folder|
+    puts "Folder ##{folder.id} with name: #{folder.name} was created at: #{folder.created_at} and has #{folder.qrs} images attached."
+end
+```
+
+And create new folders using:
+```ruby
+folder_id = client.folders.create({ name: "My first folder" })
+```
+
+## Error handling
+
+This gem follows the exception error handling. All errors raised by this gem inherits from `Qrfy::Errors::Base` class and belong to the following categories:
+    
+    * `Qrfy::Errors::RecordInvalid`
+    * `Qrfy::Errors::Unauthorized`
+    * `Qrfy::Errors::RecordNotFound`
+    * `Qrfy::Errors::TooManyRequests`
 
 ## Development
 
@@ -28,7 +75,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/qrfy.
+Bug reports and pull requests are welcome on GitHub at https://github.com/w-zygmuntowicz/qrfy.
 
 ## License
 
