@@ -43,4 +43,15 @@ class ClientTest < Minitest::Test
     folder_id = client.folders.create(**body)
     assert_equal 0, folder_id
   end
+
+  def test_qrs_batch_delete
+    stubbed_response = stub_response(status: 204)
+    body = { ids: [0] }
+    stub = stub_request("qrs/batch-delete", response: stubbed_response, method: :post, body: body)
+    client = Qrfy::Client.new(api_key: "fake", adapter: :test, stubs: stub)
+
+    result = client.qrs.batch_delete(ids: body[:ids])
+
+    assert_equal true, result
+  end
 end

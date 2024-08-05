@@ -26,5 +26,9 @@ module Qrfy
     def folders
       Resources::Folders.new(self)
     end
+
+    def qrs
+      Resources::Qrs.new(self)
+    end
   end
 end

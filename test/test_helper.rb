@@ -8,8 +8,8 @@ require "faraday"
 require "json"
 
 class Minitest::Test
-  def stub_response(fixture:, status: 200, headers: { "Content-Type" => "application/json" })
-    [status, headers, File.read("test/fixtures/#{fixture}.json")]
+  def stub_response(fixture: nil, status: 200, headers: { "Content-Type" => "application/json" })
+    [status, headers, fixture ? File.read("test/fixtures/#{fixture}.json") : nil]
   end
 
   def stub_request(path, response:, method: :get, body: {})
