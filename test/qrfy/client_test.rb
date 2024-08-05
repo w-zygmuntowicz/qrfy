@@ -33,4 +33,14 @@ class ClientTest < Minitest::Test
     assert_equal(10, folder.qrs)
     assert_equal(1, folder.id)
   end
+
+  def test_folders_create
+    stubbed_response = stub_response(fixture: "folders/create", status: 201)
+    body = { name: "Folder 1" }
+    stub = stub_request("folders", response: stubbed_response, method: :post, body: body)
+    client = Qrfy::Client.new(api_key: "fake", adapter: :test, stubs: stub)
+
+    folder_id = client.folders.create(**body)
+    assert_equal 0, folder_id
+  end
 end
