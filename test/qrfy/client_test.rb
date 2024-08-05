@@ -16,4 +16,21 @@ class ClientTest < Minitest::Test
 
     assert_equal("API-1234", client.api_key)
   end
+
+  def test_folders_listing
+    stub = stub_request("folders", response: stub_response(fixture: "folders/list"))
+    client = Qrfy::Client.new(api_key: "fake", adapter: :test, stubs: stub)
+
+    folders = client.folders.list
+
+    assert_equal(1, folders.length)
+
+    folder = folders.first
+
+    assert_equal(Qrfy::Objects::Folder, folder.class)
+    assert_equal("Folder name", folder.name)
+    assert_equal(Time.new("2022-11-01T20:51:14.000Z"), folder.created_at)
+    assert_equal(10, folder.qrs)
+    assert_equal(1, folder.id)
+  end
 end

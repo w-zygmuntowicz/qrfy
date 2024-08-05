@@ -1,0 +1,6 @@
+module Qrfy
+  module Resources
+    autoload :Base, "qrfy/resources/base"
+    autoload :Folders, "qrfy/resources/folders"
+  end
+end

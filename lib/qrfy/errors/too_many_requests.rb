@@ -1,5 +1,5 @@
 module Qrfy
   module Errors
-    class Base < StandardError; end
+    class TooManyRequests < Base; end
   end
 end

@@ -66,6 +66,7 @@ This gem follows the exception error handling. All errors raised by this gem inh
     * `Qrfy::Errors::Unauthorized`
     * `Qrfy::Errors::RecordNotFound`
     * `Qrfy::Errors::TooManyRequests`
+    * `Qrfy::Errors::InternalServerError`
 
 ## Development
 
