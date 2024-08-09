@@ -22,6 +22,12 @@ module Qrfy
         response = get_request("qrs")
         Collection.from_response(response.body["data"], type: Qrfy::Objects::Qr)
       end
+
+      def get(id)
+        response = get_request("qrs/#{id}")
+
+        Qrfy::Objects::Qr.new(response.body)
+      end
     end
   end
 end

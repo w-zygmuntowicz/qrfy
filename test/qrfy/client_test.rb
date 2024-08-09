@@ -66,6 +66,17 @@ class ClientTest < Minitest::Test
     assert_equal 0, qr.id
   end
 
+  def test_qrs_get
+    qr_id = 0
+
+    stubbed_response = stub_response(fixture: "qrs/get", status: 200)
+    stub = stub_request("qrs/#{qr_id}", response: stubbed_response, method: :get)
+    client = Qrfy::Client.new(api_key: "fake", adapter: :test, stubs: stub)
+
+    qr = client.qrs.get(qr_id)
+    assert_equal qr_id, qr.id
+  end
+
   def test_qrs_batch_delete
     stubbed_response = stub_response(status: 204)
     body = { ids: [0] }
