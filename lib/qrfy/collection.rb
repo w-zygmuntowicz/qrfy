@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
+# :markup: markdown
+
 module Qrfy
+  # # Qrfy Collection
+  #
+  # A way to abstract collection API responses.
   class Collection
     def initialize(data:, total:, next_cursor:, prev_cursor:)
       @data = data

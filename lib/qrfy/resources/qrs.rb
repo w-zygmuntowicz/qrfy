@@ -1,7 +1,12 @@
 # frozen_string_literal: true
 
+# :markup: markdown
+
 module Qrfy
   module Resources
+    # # Qrs Qrfy Resource
+    #
+    # A CRUD interface for the actual Qr API calls.
     class Qrs < Base
       def batch_delete(ids:)
         post_request("qrs/batch-delete", body: { ids: ids })

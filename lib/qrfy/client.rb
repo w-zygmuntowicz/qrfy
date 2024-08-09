@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
+# :markup: markdown
+
 module Qrfy
+  # # Qrfy Client
+  #
+  # Hides actual implementation of HTTP API calls. You can overwrite the global configuration
+  # (api key or http adapter) passing values in the initializer.
   class Client
     BASE_URL = "https://qrfy.com/api/public"
 

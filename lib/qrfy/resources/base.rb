@@ -1,7 +1,12 @@
 # frozen_string_literal: true
 
+# :markup: markdown
+
 module Qrfy
   module Resources
+    # # Base Qrfy Resource
+    #
+    # Implements a structure for specific REST qrfy resources and encapsulate API calls implementation.
     class Base
       attr_reader :client
 
@@ -23,7 +28,7 @@ module Qrfy
         handle_response client.connection.put(url, body, headers.merge({ "API-KEY" => client.api_key }))
       end
 
-      def handle_response(response)
+      def handle_response(response) # rubocop:disable Metrics/MethodLength
         message = response.body["error"] if response.body.is_a?(Hash)
 
         case response.status

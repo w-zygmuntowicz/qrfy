@@ -5,6 +5,8 @@ require "faraday/parse_dates"
 
 require_relative "qrfy/version"
 
+# :markup: markdown
+# :include: ../README.md
 module Qrfy
   autoload :Client, "qrfy/client"
   autoload :Configuration, "qrfy/configuration"
