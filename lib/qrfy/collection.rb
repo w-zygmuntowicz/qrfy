@@ -8,8 +8,8 @@ module Qrfy
     end
 
     class << self
-      def from_response(response, type:)
-        response.body.map { |attrs| type.new(attrs) }
+      def from_response(data, type:)
+        data.map { |attrs| type.new(attrs) }
       end
     end
   end

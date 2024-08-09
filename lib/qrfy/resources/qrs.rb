@@ -17,6 +17,11 @@ module Qrfy
         response = post_request("qrs", body: body)
         array_unwrap(response.body["ids"])
       end
+
+      def list
+        response = get_request("qrs")
+        Collection.from_response(response.body["data"], type: Qrfy::Objects::Qr)
+      end
     end
   end
 end

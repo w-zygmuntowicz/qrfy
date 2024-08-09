@@ -3,7 +3,7 @@ module Qrfy
     class Folders < Base
       def list
         response = get_request("folders")
-        Collection.from_response(response, type: Qrfy::Objects::Folder)
+        Collection.from_response(response.body, type: Qrfy::Objects::Folder)
       end
 
       def create(**attributes)

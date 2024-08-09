@@ -54,9 +54,16 @@ class ClientTest < Minitest::Test
     assert_equal [1, 2, 3, 4], qr_ids
   end
 
-  def test_retrieve_qrs_image
-    client = Qrfy::Client.new(api_key: "fake")
-    client.qrs
+  def test_list_qrs
+    stubbed_response = stub_response(fixture: "qrs/list", status: 200)
+    stub = stub_request("qrs", response: stubbed_response, method: :get)
+    client = Qrfy::Client.new(api_key: "fake", adapter: :test, stubs: stub)
+
+    qrs = client.qrs.list
+    assert_equal 1, qrs.length
+
+    qr = qrs.first
+    assert_equal 0, qr.id
   end
 
   def test_qrs_batch_delete
