@@ -6,6 +6,17 @@ module Qrfy
 
         true
       end
+
+      def create(qrs, style: nil, folder_id: nil)
+        qrs = array_wrap(qrs)
+
+        body = { qrs: qrs }
+        body.merge(style: style) unless style.nil?
+        body.merge(folder: folder_id) unless folder_id.nil?
+
+        response = post_request("qrs", body: body)
+        array_unwrap(response.body["ids"])
+      end
     end
   end
 end

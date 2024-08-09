@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "faraday"
-require "faraday_middleware"
+require "faraday/parse_dates"
 
 require_relative "qrfy/version"
 

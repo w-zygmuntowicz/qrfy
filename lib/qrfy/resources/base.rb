@@ -10,15 +10,15 @@ module Qrfy
       private
 
       def get_request(url, params: {}, headers: {})
-        handle_response client.connection.get(url, params, headers)
+        handle_response client.connection.get(url, params, headers.merge({ "API-KEY" => client.api_key }))
       end
 
       def post_request(url, body:, headers: {})
-        handle_response client.connection.post(url, body, headers)
+        handle_response client.connection.post(url, body, headers.merge({ "API-KEY" => client.api_key }))
       end
 
       def put_request(url, body:, headers: {})
-        handle_response client.connection.put(url, body, headers)
+        handle_response client.connection.put(url, body, headers.merge({ "API-KEY" => client.api_key }))
       end
 
       def handle_response(response)
@@ -40,6 +40,16 @@ module Qrfy
         end
 
         response
+      end
+
+      def array_wrap(value)
+        value.is_a?(Array) ? value : [value]
+      end
+
+      def array_unwrap(ary)
+        return ary.first if ary.length == 1
+
+        ary
       end
     end
   end

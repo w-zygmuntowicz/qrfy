@@ -12,11 +12,10 @@ module Qrfy
     end
 
     def connection
-      @connection ||= Faraday.new(BASE_URL) do |conn|
-        conn.request :authorization, :Bearer, api_key
+      @connection ||= Faraday.new(url: BASE_URL) do |conn|
         conn.request :json
 
-        conn.response :dates
+        conn.response :parse_dates
         conn.response :json, content_type: "application/json"
 
         conn.adapter adapter, @stubs

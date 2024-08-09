@@ -44,6 +44,21 @@ class ClientTest < Minitest::Test
     assert_equal 0, folder_id
   end
 
+  def test_create
+    stubbed_response = stub_response(fixture: "qrs/create", status: 200)
+    qr_params = { name: "QR1", type: "text", data: { text: "QR1 data" } }
+    stub = stub_request("qrs", response: stubbed_response, method: :post, body: { qrs: [qr_params] })
+    client = Qrfy::Client.new(api_key: "fake", adapter: :test, stubs: stub)
+
+    qr_ids = client.qrs.create(qr_params)
+    assert_equal [1, 2, 3, 4], qr_ids
+  end
+
+  def test_retrieve_qrs_image
+    client = Qrfy::Client.new(api_key: "fake")
+    client.qrs
+  end
+
   def test_qrs_batch_delete
     stubbed_response = stub_response(status: 204)
     body = { ids: [0] }

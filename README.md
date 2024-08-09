@@ -33,16 +33,22 @@ client = Qrfy::Client.new(api_key: ENV["QRFY_API_KEY"])
 ### QR
 
 
-
+#### Create
 Create a new QR code:
 ```ruby
-client.qrs.create()
+id = client.qrs.create(qr_params)
 ```
 
 Create many QR codes at once:
 ```ruby
-client.qrs.bulk_create()
+ids = client.qrs.create([qr_params1, qr_params2])
 ```
+
+You can also attach global style for your qr images and folder in which it should be saved.
+```ruby
+id = client.qrs.create(qr_params, style: { shape: { style: :sparkle } }, folder_id: 1)
+```
+
 
 ### Folder
 
