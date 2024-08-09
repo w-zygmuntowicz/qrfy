@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Qrfy
   module Errors
     autoload :Base, "qrfy/errors/base"

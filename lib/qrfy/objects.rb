@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Qrfy
   module Objects
     autoload :Base, "qrfy/objects/base"

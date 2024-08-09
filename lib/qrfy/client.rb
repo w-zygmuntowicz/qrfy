@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module Qrfy
   class Client
-    BASE_URL = "https://qrfy.com/api/public".freeze
+    BASE_URL = "https://qrfy.com/api/public"
 
     attr_reader :api_key, :adapter
 

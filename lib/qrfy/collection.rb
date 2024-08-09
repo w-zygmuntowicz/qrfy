@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Qrfy
   class Collection
     def initialize(data:, total:, next_cursor:, prev_cursor:)
