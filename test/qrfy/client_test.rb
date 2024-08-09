@@ -77,6 +77,18 @@ class ClientTest < Minitest::Test
     assert_equal qr_id, qr.id
   end
 
+  def test_qrs_retrieve_image
+    qr_id = 0
+
+    fixture = File.binread("test/fixtures/qrs/retrieve_qr.png")
+    stubbed_response = [200, {}, fixture]
+    stub = stub_request("qrs/#{qr_id}/png", response: stubbed_response, method: :get)
+    client = Qrfy::Client.new(api_key: "fake", adapter: :test, stubs: stub)
+    qr_image = client.qrs.retrieve_image(qr_id, format: :png)
+
+    assert_equal fixture, qr_image
+  end
+
   def test_qrs_batch_delete
     stubbed_response = stub_response(status: 204)
     body = { ids: [0] }

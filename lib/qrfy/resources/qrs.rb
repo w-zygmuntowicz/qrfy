@@ -28,6 +28,12 @@ module Qrfy
 
         Qrfy::Objects::Qr.new(response.body)
       end
+
+      def retrieve_image(id, format: :png)
+        response = get_request("qrs/#{id}/#{format}")
+
+        response.body
+      end
     end
   end
 end
