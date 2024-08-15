@@ -31,7 +31,7 @@ class ClientTest < Minitest::Test
 
     assert_equal(Qrfy::Objects::Folder, folder.class)
     assert_equal("Folder name", folder.name)
-    assert_equal(Time.new("2022-11-01T20:51:14.000Z"), folder.created_at)
+    assert_equal(Time.new(2022, 11, 1, 20, 51, 14, 0), folder.created_at)
     assert_equal(10, folder.qrs)
     assert_equal(1, folder.id)
   end
