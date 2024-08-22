@@ -102,6 +102,18 @@ class ClientTest < Minitest::Test
     assert_equal true, result
   end
 
+  def test_qrs_delete
+    stubbed_response = stub_response(status: 204)
+    id = 0
+    body = { ids: [id] }
+    stub = stub_request("qrs/batch-delete", response: stubbed_response, method: :post, body: body)
+    client = Qrfy::Client.new(api_key: "fake", adapter: :test, stubs: stub)
+
+    result = client.qrs.delete(id)
+
+    assert_equal true, result
+  end
+
   def test_qrs_update
     qr_id = 0
     body = { name: "New name" }

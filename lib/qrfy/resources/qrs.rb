@@ -9,9 +9,13 @@ module Qrfy
     # A CRUD interface for the actual Qr API calls.
     class Qrs < Base
       def batch_delete(ids:)
-        post_request("qrs/batch-delete", body: { ids: ids })
+        post_request("qrs/batch-delete", body: { ids: ids.map(&:to_i) })
 
         true
+      end
+
+      def delete(id)
+        batch_delete(ids: array_wrap(id))
       end
 
       def create(qrs, style: nil, folder_id: nil)
