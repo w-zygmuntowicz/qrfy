@@ -101,4 +101,16 @@ class ClientTest < Minitest::Test
 
     assert_equal true, result
   end
+
+  def test_qrs_update
+    qr_id = 0
+    body = { name: "New name" }
+    stubbed_response = stub_response(fixture: "qrs/update", status: 200)
+    stub = stub_request("qrs/#{qr_id}", response: stubbed_response, method: :put, body: body)
+    client = Qrfy::Client.new(api_key: "fake", adapter: :test, stubs: stub)
+
+    id = client.qrs.update(qr_id, body)
+
+    assert_equal qr_id, id
+  end
 end

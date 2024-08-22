@@ -41,6 +41,12 @@ module Qrfy
 
         response.body
       end
+
+      def update(id, params)
+        response = put_request("qrs/#{id}", body: params)
+
+        response.body["id"]
+      end
     end
   end
 end
