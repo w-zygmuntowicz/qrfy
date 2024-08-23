@@ -68,11 +68,11 @@ folder_id = client.folders.create({ name: "My first folder" })
 
 This gem follows the exception error handling. All errors raised by this gem inherits from `Qrfy::Errors::Base` class and belong to the following categories:
     
-    * `Qrfy::Errors::RecordInvalid`
-    * `Qrfy::Errors::Unauthorized`
-    * `Qrfy::Errors::RecordNotFound`
-    * `Qrfy::Errors::TooManyRequests`
-    * `Qrfy::Errors::InternalServerError`
+    * Qrfy::Errors::RecordInvalid
+    * Qrfy::Errors::Unauthorized
+    * Qrfy::Errors::RecordNotFound
+    * Qrfy::Errors::TooManyRequests
+    * Qrfy::Errors::InternalServerError
 
 ## Development
 
