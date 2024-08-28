@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description = "A really simple wrapper for qrfy.com API written in pure ruby."
   spec.homepage = "https://github.com/w-zygmuntowicz/qrfy"
   spec.license = "MIT"
-  spec.required_ruby_version = ">= 2.7.8"
+  spec.required_ruby_version = ">= 2.7.0"
 
   spec.metadata["bug_tracker_uri"] = "https://github.com/w-zygmuntowicz/qrfy/issues"
   spec.metadata["source_code_uri"] = "https://github.com/w-zygmuntowicz/qrfy/tree/v#{spec.version}"
